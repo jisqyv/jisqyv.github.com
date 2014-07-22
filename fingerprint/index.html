@@ -1,0 +1,17 @@
+<html>
+<head><title>Foo</title>
+<script type="text/javascript"
+        src="fingerprint.min.js"></script>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var z = new Fingerprint({canvas: true});
+    $("#fingerprint")[0].innerHTML = z.get();
+  });
+</script>
+</head>
+<body>
+<h1>You've been fingerprinted!</h1>
+<p>Your fingerprint is: <b><span id=fingerprint></span><b></p>
+</body>
+</html>
