@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>The Internet Engineering Task Force, A Quick Intro</title>
+<meta name="author" content="Jeffrey I. Schiller"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/css/theme/beige.css" id="theme"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1 class="title">The Internet Engineering Task Force, A Quick Intro</h1><h2 class="author">Jeffrey I. Schiller</h2><h2 class="date">12/04/2024</h2>
+</section>
+<section>
+<section id="slide-org24aeed7">
+<h2 id="org24aeed7">Who am I</h2>
+<ul>
+<li>Network Engineer, Software Developer, Security Guru
+<ul>
+<li>IETF Security Area Director 1994-2003</li>
+
+</ul></li>
+<li>Built and ran MIT’s Network and networking infrastructure for 25
+years</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org9f12058">
+<h2 id="org9f12058">History</h2>
+<ul>
+<li>In the Beginning&#x2026;</li>
+<li>There was the ARPANet. It was governed by the Internet Activities
+Board (IAB).
+<ul>
+<li>PI's of the ARPANet Project</li>
+
+</ul></li>
+<li>As the Internet became more independent, it morphed into what we
+have today.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org74ae99d">
+<h2 id="org74ae99d">Structure</h2>
+<ul>
+<li>Internet Architecture Board (IAB) &#x2013; Over all direction</li>
+<li>Internet Engineering Steering Group (IESG) &#x2013; Where documents are
+approved (Also selects Working Group (WG) Chairs</li>
+<li>Working Groups &#x2013; Where the work actually gets done
+<ul>
+<li>Completely open to anyone who wishes to participate</li>
+<li>You must give up IP rights to contributions you make</li>
+
+</ul></li>
+<li>"Rough Consensus and Running Code!"
+Emphasis on what actually works</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org29caf06">
+<h2 id="org29caf06">Working Groups</h2>
+<ul>
+<li>Each working group reports to an Area Director</li>
+<li>The set of Area Directors make up the IESG</li>
+<li>Working Groups run by consensus</li>
+<li>But the IESG votes approval
+<ul>
+<li>Yes, No Objection, Discuss</li>
+<li>Note: No "No" Vote!</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org3d6c414">
+<h2 id="org3d6c414">A Meritocracy &#x2013; At least for a while</h2>
+<ul>
+<li>Early on when the Internet was under the radar&#x2026;
+<ul>
+<li>Most contributors were altruistic</li>
+
+</ul></li>
+<li>But then later&#x2026;
+<ul>
+<li>Companies send people with agendas, sometimes to delay or
+destroy a standard</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org60f563a">
+<h2 id="org60f563a">Governance</h2>
+<ul>
+<li>IESG is the final approval body</li>
+<li>Members of the IESG serve 2 year terms, appointed by a nominating
+committee</li>
+<li>The Nominating Committee is misnamed, they are the deciders
+Though the IAB approves the selection, but that is really just a
+rubber stamp, or a final check.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org20d2721">
+<h2 id="org20d2721">Nominating Committee</h2>
+<ul>
+<li>Chosen at random from volunteers who qualify</li>
+<li>Random process is verifiable</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgb2601fb">
+<h2 id="orgb2601fb">IETF Successes (Jeff's View)</h2>
+<ul>
+<li>Transport Layer Security (TLS)</li>
+<li>IPv6 (??)</li>
+<li>SMTP/MIME
+OK, I can quibble about this one, but the fact is that email works
+interoperably planet wide!</li>
+<li>Interoperability is an important criteria for an Internet Standard</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgb36cf73">
+<h2 id="orgb36cf73">IETF Weaknesses (Jeff's View)</h2>
+<ul>
+<li>Doesn't care about Programming Interfaces (APIs), yet they have a
+large impact on whether or not a change in protocol will ever get
+implemented!</li>
+<li>BUSINESS CASES. The IETF ignores these. IPv6 is a good example.</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org70f49ff">
+<h2 id="org70f49ff">Questions?</h2>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+width: 1200,
+height: 800,
+margin: 0.20,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'none', // see README of reveal.js for options
+transitionSpeed: 'default',
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+</script>
+</body>
+</html>

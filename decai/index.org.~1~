@@ -1,0 +1,162 @@
+#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:t reveal_control:t
+#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1200 reveal_height:800 timestamp:nil
+#+OPTIONS: toc:0
+#+REVEAL_MARGIN: 0.2
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: none
+#+REVEAL_THEME: beige
+#+REVEAL_HLEVEL: 999
+#+REVEAL_MULTIPLEX_ID: 5e4d0368f30a6c96
+#+REVEAL_MULTIPLEX_SECRET: 15014673113961190511
+# #+REVEAL_MULTIPLEX_URL: http://jis.qyv.net:1948/
+# #+REVEAL_MULTIPLEX_SOCKETIO_URL: socket.io.min.js
+# #+REVEAL_MULTIPLEX_SOCKETIO_URL: https://ipfs.io/ipfs/QmUk5MJUJgNjmdhP3bAup2WCRPnMF67cp1RmM5tvUk4hFG/socket.io.min.js
+# #+REVEAL_MULTIPLEX_SOCKETIO_URL: http://jis.qyv.net/ipfs/QmUk5MJUJgNjmdhP3bAup2WCRPnMF67cp1RmM5tvUk4hFG/socket.io.min.js
+# #+REVEAL_PLUGINS: (highlight multiplex)
+#+TITLE: MIT App Inventor – Behind the Scenes
+#+AUTHOR: Jeffrey I. Schiller
+#+EMAIL: jis@mit.edu
+#+DATE: 07/28/2022
+* Who am I
+  * One of the MIT App Inventor developers
+    * Came on-board in 2011 when project moved from Google to MIT
+  * Built and ran MIT’s Network and networking infrastructure for 25
+    years
+  * Member of the Internet Engineering Task Force
+    * Served in a leadership role for 9 years – Security Area Director
+* App Inventor in Pieces
+  * Server – Hosted in Google’s App Engine Infrastructure
+  * Client – Runs in your browser, does the real work
+  * Companion – Incremental Development App  runs on your phone
+  * Build Servers – Builds a packaged “apk” file when ready
+  * Rendezvous Server – Helps browser and phone find each other
+* The Anatomy of a Project
+  * A .aia file is really just a ZIP archive
+    * Each screen is two files internally
+    * Assets: Sound, Images, etc. also stored in .aia file
+    * project.properties – Contains project level meta data
+  * Designer Data – Screen1.scm
+    * File extension implies Scheme, but is really a json file
+  * Screen1.bky – XML representation of blocks
+  * Screen1.yail – Blocks compiled to Scheme code (YAIL)
+* The Server
+  * Basically it is a file server.
+  * Downloads the App Inventor client
+  * Manages authentication/access control
+  * Stores projects
+* The Client
+  * Where the real work happens
+  * Three portions
+    * Designer – Written in Java using the Google Web Toolkit (GWT)
+    * The Remote Procedure Call interface to the server
+      * Part of the designer code in GWT
+    * The Blocks Editor – Written in Javascript using Google’s
+      “Blockly” toolkit
+* The Buildservers
+  * The server cannot do a lot of computation (limitation of App
+    Engine)
+  * Buildservers take project source files (.aia files) and compile
+    them to APK files. Native Android applications
+  * Currently we run 21 buildservers for our public service comprising
+    168 cores and 168GB of memory
+* The Companion
+  * Native Android Application
+  * Has all of App Inventor’s components builtin
+  * Is an interpreter of the blocks, permits real time development
+    * Internal name: The REPL (for Read Eval Print Loop)
+  * Is also a web *server* which is how the browser client sends it
+    code
+  * We have Companion versions for Android and iOS
+    * When you build a program with MIT App Inventor it runs the
+      same on iOS or Android(*)
+* The Rendezvous Server
+  * When you use the “Connect Companion” menu you see a QR Code
+  * The Browser client now polls the rendezvous server looking for
+    information associated with the six character code embedded in the
+    QR Code (and displayed as well)
+  * When you scan the code on your phone, it posts its IP address to
+    the rendezvous server. The next poll from the client will send it
+    the phone’s IP address
+  * The rendezvous server lives at rendezvous.appinventor.mit.edu
+  * Several iterations, current version is written in Rust
+* Let’s Examine “HelloPurr”
+  * Very simple App, just two blocks:
+[[./blocks.png]]
+* XML Representation
+#+BEGIN_SRC nxml
+  <block type="component_event" id="1" x="-290" y="30">
+    <mutation component_type="Button"
+     instance_name="Button1" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">Button1</field>
+    <statement name="DO">
+      <block type="component_method" id="B2g@K~jbvI4L(2k8iby(">
+        <mutation component_type="Sound" method_name="Play"
+          is_generic="false" instance_name="Sound1"></mutation>
+        <field name="COMPONENT_SELECTOR">Sound1</field>
+      </block>
+    </statement>
+  </block>
+#+END_SRC
+* Compiled YAIL (Scheme)
+#+BEGIN_SRC lisp
+;;; Button1
+
+(add-component Screen1
+      com.google.appinventor.components.runtime.Button Button1
+         (set-and-coerce-property! 'Button1 'Image "kitty.png" 'text))
+
+(define-event Button1 Click()(set-this-form)
+    (call-component-method 'Sound1 'Play (*list-for-runtime*) '()))
+
+;;; Sound1
+
+(add-component Screen1
+      com.google.appinventor.components.runtime.Sound Sound1
+         (set-and-coerce-property! 'Sound1 'Source "meow.mp3" 'text))
+#+END_SRC
+* Kawa
+  * Scheme implementation in Java
+  * Has both an Interpreter and a Compiler
+  * The Companion runs the interpreter
+    * This permits the incremental changes as an App is developed
+  * The Buildserver compile the YAIL code to a Java class file which
+    is converted either to Dalvik or ART by the normal Android build
+    process
+  * on iOS we use Picrin Scheme, Components are written in Swift
+* Application Versions
+  * Each project is tagged with the last version of App Inventor to
+    modify it
+  * When we make certain changes to the environment, we update the
+    stored version in a project after updating the project to conform
+    to the system version
+  * It is rare that we make changes that require upgrades to projects
+    * But it does happen
+  * Projects *may* be copied from one instance of App Inventor to
+    another, but it may not work
+* Challenges of the Asynchronous Environment
+  * Android (and iOS) Apps are asynchronous
+  * The main “Thread” handles events
+  * This has some subtle and non-subtle implications
+  * NO WAIT BLOCK
+  * Components that interact with the environment need to handle call
+    backs
+    * Like the “Web” Component
+* New Companion Communication
+  * Current arrangement prevents us from serving MIT App Inventor over
+    https
+    * Chrome (and soon Firefox) issuing more and scarier warnings when
+      used to visit non-https websites
+  * New approach makes use of WebRTC
+    * WebRTC is a peer-to-peer approach to talk between two browsers
+    * Will let us use https on the MIT App Inventor website
+  * Works well on "normal" networks
+    * Not so well with strict firewalls
+    * Cannot tell you which ports to unblock
+    * Well, I can, but it is a scary large list
+* Upcoming Changes
+  * New "Legacy Mode"
+    * WebRTC doesn't work in all environments
+    * "New" Legacy mode uses a pop-up window (version 2.64 Beta)
+    * Will work with https, required after Oct. 18, 2022

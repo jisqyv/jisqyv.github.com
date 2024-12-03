@@ -1,0 +1,78 @@
+#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:t reveal_control:t
+#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1200 reveal_height:800 timestamp:nil
+#+OPTIONS: toc:0
+#+REVEAL_MARGIN: 0.2
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: none
+#+REVEAL_THEME: beige
+#+REVEAL_HLEVEL: 999
+#+REVEAL_MULTIPLEX_ID: 5e4d0368f30a6c96
+#+REVEAL_MULTIPLEX_SECRET: 15014673113961190511
+# #+REVEAL_MULTIPLEX_URL: http://jis.qyv.net:1948/
+# #+REVEAL_MULTIPLEX_SOCKETIO_URL: socket.io.min.js
+# #+REVEAL_MULTIPLEX_SOCKETIO_URL: https://ipfs.io/ipfs/QmUk5MJUJgNjmdhP3bAup2WCRPnMF67cp1RmM5tvUk4hFG/socket.io.min.js
+# #+REVEAL_MULTIPLEX_SOCKETIO_URL: http://jis.qyv.net/ipfs/QmUk5MJUJgNjmdhP3bAup2WCRPnMF67cp1RmM5tvUk4hFG/socket.io.min.js
+# #+REVEAL_PLUGINS: (highlight multiplex)
+#+TITLE: The Internet Engineering Task Force, A Quick Intro
+#+AUTHOR: Jeffrey I. Schiller
+#+EMAIL: jis@mit.edu
+#+DATE: 12/04/2024
+* Who am I
+  * Network Engineer, Software Developer, Security Guru
+    * IETF Security Area Director 1994-2003
+  * Built and ran MIT’s Network and networking infrastructure for 25
+    years
+* History
+  * In the Beginning...
+  * There was the ARPANet. It was governed by the Internet Activities
+    Board (IAB).
+    * PI's of the ARPANet Project
+  * As the Internet became more independent, it morphed into what we
+    have today.
+* Structure
+  * Internet Architecture Board (IAB) -- Over all direction
+  * Internet Engineering Steering Group (IESG) -- Where documents are
+    approved (Also selects Working Group (WG) Chairs
+  * Working Groups -- Where the work actually gets done
+    * Completely open to anyone who wishes to participate
+    * You must give up IP rights to contributions you make
+  * "Rough Consensus and Running Code!"
+    Emphasis on what actually works
+* Working Groups
+  * Each working group reports to an Area Director
+  * The set of Area Directors make up the IESG
+  * Working Groups run by consensus
+  * But the IESG votes approval
+    * Yes, No Objection, Discuss
+    * Note: No "No" Vote!
+* A Meritocracy -- At least for a while
+  * Early on when the Internet was under the radar...
+    * Most contributors were altruistic
+  * But then later...
+    * Companies send people with agendas, sometimes to delay or
+      destroy a standard
+* Governance
+  * IESG is the final approval body
+  * Members of the IESG serve 2 year terms, appointed by a nominating
+    committee
+  * The Nominating Committee is misnamed, they are the deciders
+    Though the IAB approves the selection, but that is really just a
+    rubber stamp, or a final check.
+* Nominating Committee
+  * Chosen at random from volunteers who qualify
+  * Random process is verifiable
+* IETF Successes (Jeff's View)
+  * Transport Layer Security (TLS)
+  * IPv6 (??)
+  * SMTP/MIME
+    OK, I can quibble about this one, but the fact is that email works
+    interoperably planet wide!
+  * Interoperability is an important criteria for an Internet Standard
+* IETF Weaknesses (Jeff's View)
+  * Doesn't care about Programming Interfaces (APIs), yet they have a
+    large impact on whether or not a change in protocol will ever get
+    implemented!
+  * BUSINESS CASES. The IETF ignores these. IPv6 is a good example.
+* Questions?
